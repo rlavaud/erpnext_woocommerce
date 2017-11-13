@@ -43,7 +43,7 @@ before_script:
 
   - cd ~/frappe-bench
   - bench get-app erpnext https://github.com/frappe/erpnext.git --branch master
-  - bench get-app erpnext_shopify $TRAVIS_BUILD_DIR
+  - bench get-app erpnext_woocommerce $TRAVIS_BUILD_DIR
   - bench reinstall --yes
   - bench build
   - bench scheduler disable

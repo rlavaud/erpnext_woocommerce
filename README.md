@@ -1,6 +1,6 @@
-## ERPNext Shopify
+## ERPNext woocommerce
 
-Shopify connector for ERPNext
+woocommerce connector for ERPNext
 
 #### License
 

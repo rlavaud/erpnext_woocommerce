@@ -3,19 +3,19 @@ from setuptools import setup, find_packages
 from pip.req import parse_requirements
 import re, ast
 
-# get version from __version__ variable in erpnext_shopify/__init__.py
+# get version from __version__ variable in erpnext_woocommerce/__init__.py
 _version_re = re.compile(r'__version__\s+=\s+(.*)')
 
-with open('erpnext_shopify/__init__.py', 'rb') as f:
+with open('erpnext_woocommerce/__init__.py', 'rb') as f:
     version = str(ast.literal_eval(_version_re.search(
         f.read().decode('utf-8')).group(1)))
 
 requirements = parse_requirements("requirements.txt", session="")
 
 setup(
-	name='erpnext_shopify',
+	name='erpnext_woocommerce',
 	version=version,
-	description='Shopify connector for ERPNext',
+	description='woocommerce connector for ERPNext',
 	author='Frappe Technologies Pvt. Ltd.',
 	author_email='info@frappe.io',
 	packages=find_packages(),

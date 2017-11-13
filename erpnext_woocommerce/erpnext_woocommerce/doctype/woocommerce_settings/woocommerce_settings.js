@@ -1,27 +1,27 @@
 // Copyright (c) 2015, Frappe Technologies Pvt. Ltd. and Contributors
 // License: GNU General Public License v3. See license.txt
 
-frappe.provide("erpnext_shopify.shopify_settings");
+frappe.provide("erpnext_woocommerce.woocommerce_settings");
 
-frappe.ui.form.on("Shopify Settings", "onload", function(frm, dt, dn){
+frappe.ui.form.on("woocommerce Settings", "onload", function(frm, dt, dn){
 	frappe.call({
-		method:"erpnext_shopify.erpnext_shopify.doctype.shopify_settings.shopify_settings.get_series",
+		method:"erpnext_woocommerce.erpnext_woocommerce.doctype.woocommerce_settings.woocommerce_settings.get_series",
 		callback:function(r){
 			$.each(r.message, function(key, value){
 				set_field_options(key, value)
 			})
 		}
 	})
-	erpnext_shopify.shopify_settings.setup_queries(frm);
+	erpnext_woocommerce.woocommerce_settings.setup_queries(frm);
 })
 
-frappe.ui.form.on("Shopify Settings", "app_type", function(frm, dt, dn) {
+frappe.ui.form.on("woocommerce Settings", "app_type", function(frm, dt, dn) {
 	frm.toggle_reqd("api_key", (frm.doc.app_type == "Private"));
 	frm.toggle_reqd("password", (frm.doc.app_type == "Private"));
 })
 
-frappe.ui.form.on("Shopify Settings", "refresh", function(frm){
-	if(!frm.doc.__islocal && frm.doc.enable_shopify === 1){
+frappe.ui.form.on("woocommerce Settings", "refresh", function(frm){
+	if(!frm.doc.__islocal && frm.doc.enable_woocommerce === 1){
 		frm.toggle_reqd("price_list", true);
 		frm.toggle_reqd("warehouse", true);
 		frm.toggle_reqd("taxes", true);
@@ -34,22 +34,22 @@ frappe.ui.form.on("Shopify Settings", "refresh", function(frm){
 		frm.toggle_reqd("sales_invoice_series", frm.doc.sync_sales_invoice);
 		frm.toggle_reqd("delivery_note_series", frm.doc.sync_delivery_note);
 
-		frm.add_custom_button(__('Sync Shopify'), function() {
+		frm.add_custom_button(__('Sync woocommerce'), function() {
 			frappe.call({
-				method:"erpnext_shopify.api.sync_shopify",
+				method:"erpnext_woocommerce.api.sync_woocommerce",
 			})
 		}).addClass("btn-primary");
 	}
 
 	if(!frm.doc.access_token && !frm.doc.api_key) {
-		frm.add_custom_button(__("Connect to Shopify"),
+		frm.add_custom_button(__("Connect to woocommerce"),
 			function(){
-				window.open("https://apps.shopify.com/erpnext");
+				window.open("https://apps.woocommerce.com/erpnext");
 			}).addClass("btn-primary")
 	}
 
-	frm.add_custom_button(__("Shopify Log"), function(){
-		frappe.set_route("List", "Shopify Log");
+	frm.add_custom_button(__("woocommerce Log"), function(){
+		frappe.set_route("List", "woocommerce Log");
 	})
 	
 	frm.add_custom_button(__("Reset Last Sync Date"), function(){
@@ -75,7 +75,7 @@ frappe.ui.form.on("Shopify Settings", "refresh", function(frm){
 
 
 	frappe.call({
-		method: "erpnext_shopify.api.get_log_status",
+		method: "erpnext_woocommerce.api.get_log_status",
 		callback: function(r) {
 			if(r.message){
 				frm.dashboard.set_headline_alert(r.message.text, r.message.alert_class)
@@ -86,7 +86,7 @@ frappe.ui.form.on("Shopify Settings", "refresh", function(frm){
 })
 
 
-$.extend(erpnext_shopify.shopify_settings, {
+$.extend(erpnext_woocommerce.woocommerce_settings, {
 	setup_queries: function(frm) {
 		frm.fields_dict["warehouse"].get_query = function(doc) {
 			return {

@@ -147,8 +147,8 @@
  "max_attachments": 0, 
  "modified": "2016-03-23 02:01:28.042687", 
  "modified_by": "Administrator", 
- "module": "ERPNext Shopify", 
- "name": "Shopify Log", 
+ "module": "ERPNext woocommerce", 
+ "name": "woocommerce Log", 
  "name_case": "", 
  "owner": "Administrator", 
  "permissions": [

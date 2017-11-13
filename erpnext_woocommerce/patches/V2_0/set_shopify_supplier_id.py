@@ -4,20 +4,20 @@
 
 from __future__ import unicode_literals
 import frappe
-from erpnext_shopify.utils import is_shopify_enabled
+from erpnext_woocommerce.utils import is_woocommerce_enabled
 from frappe.utils.fixtures import sync_fixtures
 
 def execute():
-	if not is_shopify_enabled():
+	if not is_woocommerce_enabled():
 		return
 	
-	sync_fixtures('erpnext_shopify')
+	sync_fixtures('erpnext_woocommerce')
 	
 	fieldnames = frappe.db.sql("select fieldname from `tabCustom Field`", as_dict=1)	
 	
-	if not any(field['fieldname'] == 'shopify_supplier_id' for field in fieldnames):
+	if not any(field['fieldname'] == 'woocommerce_supplier_id' for field in fieldnames):
 		return 
 			
-	frappe.db.sql("""update tabSupplier set shopify_supplier_id=supplier_name """)
+	frappe.db.sql("""update tabSupplier set woocommerce_supplier_id=supplier_name """)
 	frappe.db.commit()
 			

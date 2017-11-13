@@ -6,7 +6,7 @@ from __future__ import unicode_literals
 import frappe
 import unittest
 
-# test_records = frappe.get_test_records('Shopify Log')
+# test_records = frappe.get_test_records('woocommerce Log')
 
-class TestShopifyLog(unittest.TestCase):
+class TestwoocommerceLog(unittest.TestCase):
 	pass

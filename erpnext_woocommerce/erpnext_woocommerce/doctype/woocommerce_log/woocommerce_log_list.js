@@ -1,4 +1,4 @@
-frappe.listview_settings['Shopify Log'] = {
+frappe.listview_settings['woocommerce Log'] = {
 	add_fields: ["status"],
 	get_indicator: function(doc) {
 		if(doc.status==="Success"){

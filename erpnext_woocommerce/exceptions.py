@@ -1,5 +1,5 @@
 from __future__ import unicode_literals
 import frappe
 
-class ShopifyError(frappe.ValidationError): pass
-class ShopifySetupError(frappe.ValidationError): pass
+class woocommerceError(frappe.ValidationError): pass
+class woocommerceSetupError(frappe.ValidationError): pass

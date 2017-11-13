@@ -4,18 +4,18 @@ import frappe
 from frappe.utils.fixtures import sync_fixtures
 
 def execute():
-	sync_fixtures("erpnext_shopify")
+	sync_fixtures("erpnext_woocommerce")
 	frappe.reload_doctype("Item")
 	frappe.reload_doctype("Customer")
 	frappe.reload_doctype("Sales Order")
 	frappe.reload_doctype("Delivery Note")
 	frappe.reload_doctype("Sales Invoice")
 	
-	for doctype, column in {"Customer": "shopify_customer_id", 
-		"Item": "shopify_product_id", 
-		"Sales Order": "shopify_order_id", 
-		"Delivery Note": "shopify_order_id", 
-		"Sales Invoice": "shopify_order_id"}.items():
+	for doctype, column in {"Customer": "woocommerce_customer_id", 
+		"Item": "woocommerce_product_id", 
+		"Sales Order": "woocommerce_order_id", 
+		"Delivery Note": "woocommerce_order_id", 
+		"Sales Invoice": "woocommerce_order_id"}.items():
 		
-		if "shopify_id" in frappe.db.get_table_columns(doctype):
-			frappe.db.sql("update `tab%s` set %s=shopify_id" % (doctype, column))	
+		if "woocommerce_id" in frappe.db.get_table_columns(doctype):
+			frappe.db.sql("update `tab%s` set %s=woocommerce_id" % (doctype, column))	

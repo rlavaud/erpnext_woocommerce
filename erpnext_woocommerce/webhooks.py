@@ -4,12 +4,12 @@ from frappe import _
 from functools import wraps
 import hashlib, base64, hmac, json
 from frappe.exceptions import AuthenticationError, ValidationError
-from .shopify_requests import get_request, get_shopify_settings, post_request, delete_request
+from .woocommerce_requests import get_request, get_woocommerce_settings, post_request, delete_request
 
 
-def shopify_webhook(f):
+def woocommerce_webhook(f):
 	"""
-	A decorator thats checks and validates a Shopify Webhook request.
+	A decorator thats checks and validates a woocommerce Webhook request.
 	"""
 
 	def _hmac_is_valid(body, secret, hmac_to_verify):
@@ -22,14 +22,14 @@ def shopify_webhook(f):
 	def wrapper(*args, **kwargs):
 		# Try to get required headers and decode the body of the request.
 		try:
-			webhook_topic = frappe.local.request.headers.get('X-Shopify-Topic')
-			webhook_hmac	= frappe.local.request.headers.get('X-Shopify-Hmac-Sha256')
+			webhook_topic = frappe.local.request.headers.get('X-woocommerce-Topic')
+			webhook_hmac	= frappe.local.request.headers.get('X-woocommerce-Hmac-Sha256')
 			webhook_data	= frappe._dict(json.loads(frappe.local.request.get_data()))
 		except:
 			raise ValidationError()
 
 		# Verify the HMAC.
-		if not _hmac_is_valid(frappe.local.request.get_data(), get_shopify_settings().password, webhook_hmac):
+		if not _hmac_is_valid(frappe.local.request.get_data(), get_woocommerce_settings().password, webhook_hmac):
 			raise AuthenticationError()
 
 			# Otherwise, set properties on the request object and return.
@@ -42,7 +42,7 @@ def shopify_webhook(f):
 
 
 @frappe.whitelist(allow_guest=True)
-@shopify_webhook
+@woocommerce_webhook
 def webhook_handler():
 	from webhooks import handler_map
 	topic = frappe.local.request.webhook_topic
@@ -52,7 +52,7 @@ def webhook_handler():
 		handler(data)
 
 def create_webhooks():
-	settings = get_shopify_settings()
+	settings = get_woocommerce_settings()
 	for event in ["orders/create", "orders/delete", "orders/updated", "orders/paid", "orders/cancelled", "orders/fulfilled",
 		"orders/partially_fulfilled", "order_transactions/create", "carts/create", "carts/update",
 		"checkouts/create", "checkouts/update", "checkouts/delete", "refunds/create", "products/create",

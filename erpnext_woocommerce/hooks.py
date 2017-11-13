@@ -2,10 +2,10 @@
 from __future__ import unicode_literals
 from . import __version__ as app_version
 
-app_name = "erpnext_shopify"
-app_title = "ERPNext Shopify"
+app_name = "erpnext_woocommerce"
+app_title = "ERPNext woocommerce"
 app_publisher = "Frappe Technologies Pvt. Ltd."
-app_description = "Shopify connector for ERPNext"
+app_description = "woocommerce connector for ERPNext"
 app_icon = "octicon octicon-file-directory"
 app_color = "grey"
 app_email = "info@frappe.io"
@@ -16,12 +16,12 @@ fixtures = ["Custom Field"]
 # ------------------
 
 # include js, css files in header of desk.html
-# app_include_css = "/assets/erpnext_shopify/css/erpnext_shopify.css"
-# app_include_js = "/assets/erpnext_shopify/js/erpnext_shopify.js"
+# app_include_css = "/assets/erpnext_woocommerce/css/erpnext_woocommerce.css"
+# app_include_js = "/assets/erpnext_woocommerce/js/erpnext_woocommerce.js"
 
 # include js, css files in header of web template
-# web_include_css = "/assets/erpnext_shopify/css/erpnext_shopify.css"
-# web_include_js = "/assets/erpnext_shopify/js/erpnext_shopify.js"
+# web_include_css = "/assets/erpnext_woocommerce/css/erpnext_woocommerce.css"
+# web_include_js = "/assets/erpnext_woocommerce/js/erpnext_woocommerce.js"
 
 # Home Pages
 # ----------
@@ -43,14 +43,14 @@ fixtures = ["Custom Field"]
 # Installation
 # ------------
 
-# before_install = "erpnext_shopify.install.before_install"
-after_install = "erpnext_shopify.after_install.create_weight_uom"
+# before_install = "erpnext_woocommerce.install.before_install"
+after_install = "erpnext_woocommerce.after_install.create_weight_uom"
 
 # Desk Notifications
 # ------------------
 # See frappe.core.notifications.get_notification_config
 
-# notification_config = "erpnext_shopify.notifications.get_notification_config"
+# notification_config = "erpnext_woocommerce.notifications.get_notification_config"
 
 # Permissions
 # -----------
@@ -70,7 +70,7 @@ after_install = "erpnext_shopify.after_install.create_weight_uom"
 
 doc_events = {
 	"Bin": {
-		"on_update": "erpnext_shopify.sync_products.trigger_update_item_stock"
+		"on_update": "erpnext_woocommerce.sync_products.trigger_update_item_stock"
 	}
 }
 
@@ -79,19 +79,19 @@ doc_events = {
 
 scheduler_events = {
 	"hourly": [
-		"erpnext_shopify.api.sync_shopify"
+		"erpnext_woocommerce.api.sync_woocommerce"
 	]
 }
 
 # Testing
 # -------
 
-# before_tests = "erpnext_shopify.install.before_tests"
+# before_tests = "erpnext_woocommerce.install.before_tests"
 
 # Overriding Whitelisted Methods
 # ------------------------------
 #
 # override_whitelisted_methods = {
-# 	"frappe.desk.doctype.event.event.get_events": "erpnext_shopify.event.get_events"
+# 	"frappe.desk.doctype.event.event.get_events": "erpnext_woocommerce.event.get_events"
 # }
 

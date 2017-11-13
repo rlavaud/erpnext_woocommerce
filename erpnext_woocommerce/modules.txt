@@ -1,1 +1,1 @@
-ERPNext Shopify
+ERPNext woocommerce

@@ -1,4 +1,4 @@
-erpnext_shopify.__init__
-erpnext_shopify.exceptions
-erpnext_shopify.hooks
-erpnext_shopify.utils
+erpnext_woocommerce.__init__
+erpnext_woocommerce.exceptions
+erpnext_woocommerce.hooks
+erpnext_woocommerce.utils

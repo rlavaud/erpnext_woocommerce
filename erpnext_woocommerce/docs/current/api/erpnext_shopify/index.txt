@@ -1,1 +1,1 @@
-erpnext_shopify.erpnext_shopify
+erpnext_woocommerce.erpnext_woocommerce

@@ -9,8 +9,8 @@ def get_data():
 			"items": [
 				{
 					"type": "doctype",
-					"name": "Shopify Settings",
-					"description": _("Connect Shopify with ERPNext"),
+					"name": "woocommerce Settings",
+					"description": _("Connect woocommerce with ERPNext"),
 					"hide_count": True
 				}
 			]
