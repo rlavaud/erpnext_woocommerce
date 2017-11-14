@@ -27,7 +27,7 @@ class woocommerceSettings(Document):
 
 	def validate_access(self):
 		try:
-			get_request('/admin/products.json', {"api_key": self.api_key,
+			get_request('/wp-json/wc/v2/settings', {"api_key": self.api_key,
 				"password": self.get_password(raise_exception=False), "woocommerce_url": self.woocommerce_url,
 				"access_token": self.access_token, "app_type": self.app_type})
 
