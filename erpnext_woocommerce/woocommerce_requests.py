@@ -38,7 +38,8 @@ def get_request(path, settings=None):
 	wcapi = API(
 		url=settings['woocommerce_url'],
 		consumer_key=settings['api_key'],
-		consumer_secret=settings['password']
+		consumer_secret=settings['password'],
+		verify_ssl=False
 	)
 	r = wcapi.get(path)
 
