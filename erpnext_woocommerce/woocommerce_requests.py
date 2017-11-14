@@ -4,6 +4,8 @@ from frappe import _
 import json, math, time, pytz
 from .exceptions import woocommerceError
 from frappe.utils import get_request_session, get_datetime, get_time_zone
+from woocommerce import API
+
 
 def check_api_call_limit(response):
 	"""
@@ -33,7 +35,14 @@ def get_request(path, settings=None):
 	s = get_request_session()
 	url = get_woocommerce_url(path, settings)
 	r = s.get(url, headers=get_header(settings))
-	check_api_call_limit(r)
+    wcapi = API(
+        url=settings['woocommerce_url'],
+        consumer_key=settings['api_key'],
+        consumer_secret=settings['password']
+    )
+    r = wcapi.get(path)
+
+	"""check_api_call_limit(r)"""
 	r.raise_for_status()
 	return r.json()
 
@@ -62,10 +71,14 @@ def delete_request(path):
 	r.raise_for_status()
 
 def get_woocommerce_url(path, settings):
-	if settings['app_type'] == "Private":
+	"""
+    if settings['app_type'] == "Private":
 		return 'https://{}:{}@{}/{}'.format(settings['api_key'], settings['password'], settings['woocommerce_url'], path)
 	else:
 		return 'https://{}/{}'.format(settings['woocommerce_url'], path)
+    """
+    return settings['woocommerce_url']
+
 
 def get_header(settings):
 	header = {'Content-Type': 'application/json'}
