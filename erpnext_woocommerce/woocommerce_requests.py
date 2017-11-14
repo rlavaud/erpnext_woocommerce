@@ -35,12 +35,12 @@ def get_request(path, settings=None):
 	s = get_request_session()
 	url = get_woocommerce_url(path, settings)
 	r = s.get(url, headers=get_header(settings))
-    wcapi = API(
-        url=settings['woocommerce_url'],
-        consumer_key=settings['api_key'],
-        consumer_secret=settings['password']
-    )
-    r = wcapi.get(path)
+	wcapi = API(
+		url=settings['woocommerce_url'],
+		consumer_key=settings['api_key'],
+		consumer_secret=settings['password']
+	)
+	r = wcapi.get(path)
 
 	"""check_api_call_limit(r)"""
 	r.raise_for_status()
@@ -71,13 +71,11 @@ def delete_request(path):
 	r.raise_for_status()
 
 def get_woocommerce_url(path, settings):
-	"""
-    if settings['app_type'] == "Private":
+	if settings['app_type'] == "Private":
 		return 'https://{}:{}@{}/{}'.format(settings['api_key'], settings['password'], settings['woocommerce_url'], path)
 	else:
 		return 'https://{}/{}'.format(settings['woocommerce_url'], path)
-    """
-    return settings['woocommerce_url']
+	return settings['woocommerce_url']
 
 
 def get_header(settings):
