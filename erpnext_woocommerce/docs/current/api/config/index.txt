@@ -1,3 +1,0 @@
-erpnext_woocommerce.config.docs
-erpnext_woocommerce.config
-erpnext_woocommerce.config.setup
