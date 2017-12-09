@@ -1,0 +1,8 @@
+erpnext_woocommerce.patches.V1_0.set_variant_id #2015-12-01
+erpnext_woocommerce.patches.V1_0.create_weight_uom
+erpnext_woocommerce.patches.V2_0.refactor_id
+erpnext_woocommerce.patches.V2_0.set_default_supplier
+erpnext_woocommerce.patches.V2_0.set_woocommerce_supplier_id
+execute:frappe.permissions.reset_perms("woocommerce Log")
+erpnext_woocommerce.patches.V2_0.add_field_woocommerce_description
+erpnext_woocommerce.patches.V2_0.reset_inclusive_taxes_and_totals

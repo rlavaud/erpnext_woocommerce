@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include erpnext_woocommerce *.css
+recursive-include erpnext_woocommerce *.csv
+recursive-include erpnext_woocommerce *.html
+recursive-include erpnext_woocommerce *.ico
+recursive-include erpnext_woocommerce *.js
+recursive-include erpnext_woocommerce *.json
+recursive-include erpnext_woocommerce *.md
+recursive-include erpnext_woocommerce *.png
+recursive-include erpnext_woocommerce *.py
+recursive-include erpnext_woocommerce *.svg
+recursive-include erpnext_woocommerce *.txt
+recursive-exclude erpnext_woocommerce *.pyc
